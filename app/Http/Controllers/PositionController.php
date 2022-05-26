@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
-class EmployeeController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::orderBy('id', 'desc')->paginate(5);
-        return view('pages.employees.index', compact('employees'));
+        $positions = Position::orderBy('id', 'desc')->paginate(5);
+        return view('pages.positions.index', compact('positions'));
     }
 
     /**
@@ -25,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('pages.employees.create');
+        return view('pages.positions.create');
     }
 
     /**
@@ -37,24 +37,14 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
-            'email' => 'required|email',
-            'telpon' => 'required',
-            'tanggal_lahir' => 'required',
-            'alamat' => 'required',
+            'nama_jabatan' => 'required',
             'gaji' => 'required',
-            'tanggal_masuk' => 'required',
-            'foto' => 'required|file|image|mimes:jpeg,png|max:100'
         ]);
 
         $data = $request->all();
-        $data['foto'] = $request->file('foto')->store(
-            'assets/',
-            'public'
-        );
 
-        Employee::create($data);
-        return redirect()->route('employees.index');
+        Position::create($data);
+        return redirect()->route('positions.index');
     }
 
     /**
@@ -76,7 +66,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $position = Position::findOrFail($id);
+        return view('pages.positions.edit', compact('position'));
     }
 
     /**
@@ -88,7 +79,16 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_jabatan' => 'required',
+            'gaji' => 'required',
+        ]);
+
+        $data = $request->all();
+        $position = Position::findOrFail($id);
+
+        $position->update($data);
+        return redirect()->route('positions.index');
     }
 
     /**
@@ -99,6 +99,9 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Position::findOrFail($id);
+        $data->delete();
+
+        return redirect()->route('positions.index');
     }
 }

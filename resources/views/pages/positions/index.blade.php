@@ -1,12 +1,15 @@
 @extends('layouts.main')
 
-@section('title', 'Admin | Karyawan')
+@section('title', 'Admin | Jabatan')
  
 @section('content')
 <div class="content">
     <div class="card">
-        <div class="card-header">
-            <h4 class="box-title">Data Karyawan</h4>
+        <div class="card-header d-flex">
+            <a href="{{ route('positions.create') }}" class="btn btn-primary btn-sm">
+                Tambah
+            </a>
+            <h4 class="box-title ml-auto">Data Jabatan</h4>
         </div>
         <div class="card-body">
             @if (session('status'))
@@ -18,29 +21,19 @@
                 <table class="table table-bordered ">
                     <thead>
                         <th>#</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Telpon</th>
-                        <th>Umur</th>
-                        <th>Alamat</th>
+                        <th>Nama Jabatan</th>
                         <th>Gaji</th>
-                        <th>Tanggal Masuk</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
-                        @forelse ($employees as $no => $employee)
+                        @forelse ($positions as $no => $position)
                             <tr>
-                                <td>{{ $no + $employees->firstItem() }}.</td>
-                                <td>#{{ $employee->nama }}</td>
-                                <td>{{ $employee->email }}</td>
-                                <td>{{ $employee->telpon }}</td>
-                                <td>{{ \Carbon\Carbon::create($employee->tanggal_lahir)->translatedFormat('l, d F Y') }}</td>
-                                <td>{{ $employee->alamat }}</td>
-                                <td>Rp {{ number_format($employee->gaji) }}</td>
-                                <td>{{ \Carbon\Carbon::create($employee->tanggal_masuk)->translatedFormat('l, d F Y') }}</td>
+                                <td>{{ $no + $positions->firstItem() }}.</td>
+                                <td>{{ $position->nama_jabatan }}</td>
+                                <td>Rp {{ number_format($position->gaji) }}</td>
                                 <td>
-                                    <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                    <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" class="d-inline">
+                                    <a href="{{ route('positions.edit', $position->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <form action="{{ route('positions.destroy', $position->id) }}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('are you sure delete this data?')">
@@ -58,7 +51,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                {{ $employees->links() }}
+                {{ $positions->links() }}
             </div>
         </div>
     </div>

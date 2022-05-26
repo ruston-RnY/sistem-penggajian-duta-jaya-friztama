@@ -13,9 +13,9 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="name">Nama</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="name" value="{{ old('name') }}">
-                            @error('name')
+                            <label for="nama">Nama</label>
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}">
+                            @error('nama')
                                 <small class="text-muted">{{ $message }}</small>
                             @enderror
                         </div>
@@ -37,9 +37,9 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="umur">Umur</label>
-                            <input type="number" class="form-control @error('umur') is-invalid @enderror" name="umur" value="{{ old('umur') }}">
-                            @error('umur')
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
+                            @error('tanggal_lahir')
                                 <small class="text-muted">{{ $message }}</small>
                             @enderror
                         </div>
@@ -65,7 +65,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="tanggal_masuk">Tanggal Masuk</label>
-                            <input type="text" name="tanggal_masuk" rows="4" class="form-control @error('tanggal_masuk') is-invalid @enderror">{{ old('tanggal_masuk') }}</input>
+                            <input type="date" name="tanggal_masuk" rows="4" class="form-control @error('tanggal_masuk') is-invalid @enderror">{{ old('tanggal_masuk') }}</input>
                             @error('tanggal_masuk')
                                 <small class="text-muted">{{ $message }}</small>
                             @enderror
@@ -79,6 +79,7 @@
                         </div>
                     </div>
                     
+                    <a href="{{ route('employees.index') }}" class="btn btn-secondary">Batal</a>
                     <button type="submit" class="btn btn-primary">
                         Submit
                     </button>

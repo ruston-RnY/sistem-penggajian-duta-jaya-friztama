@@ -16,7 +16,7 @@
     <!-- /#left-panel -->
 
     <!-- Right Panel -->
-    <div id="right-panel" class="right-panel bg-white">
+    <div id="right-panel" class="right-panel">
         <!-- Header-->
         @include('includes.header')
         <!-- /#header -->

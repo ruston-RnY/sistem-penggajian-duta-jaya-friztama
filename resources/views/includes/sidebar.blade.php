@@ -16,6 +16,9 @@
                         <li>
                             <i class="menu-icon fa fa-plus"></i><a href="{{ route('employees.create') }}">Tambah Karyawan</a>
                         </li>
+                        <li>
+                            <i class="menu-icon fa fa-plus"></i><a href="{{ route('positions.index') }}">Data Jabatan</a>
+                        </li>
                     </ul>
                 </li>
 
