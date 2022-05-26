@@ -70,7 +70,8 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $attendance = Attendance::with('karyawan')->findOrFail($id);
+        return view('pages.attendances.edit', compact('attendance'));
     }
 
     /**
@@ -82,7 +83,18 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'karyawan_id' => 'required',
+            'tanggal' => 'required',
+            'jam_kerja' => 'required',
+            'jam_lembur' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        $attendance = Attendance::findOrFail($id);
+        $attendance->update($data);
+        return redirect()->route('attendances.index');
     }
 
     /**
@@ -93,6 +105,9 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attendance = Attendance::findOrFail($id);
+        $attendance->delete();
+
+        return redirect()->route('attendances.index');
     }
 }
