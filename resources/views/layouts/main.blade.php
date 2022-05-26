@@ -8,6 +8,14 @@
 
     @include('includes.styles')
     @stack('custom-style')
+    <style>
+        .navbar .navbar-nav > li.active {
+            background: transparent;
+        }
+        .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav > .active > a:hover {
+            color: #03a9f3;
+        }
+    </style>
 </head>
 
 <body>

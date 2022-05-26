@@ -15,12 +15,11 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->integer('jabatan_id');
             $table->string('nama');
-            $table->string('email');
             $table->string('telpon');
             $table->string('alamat');
             $table->date('tanggal_lahir');
-            $table->integer('gaji');
             $table->date('tanggal_masuk');
             $table->string('foto');
             $table->softDeletes();

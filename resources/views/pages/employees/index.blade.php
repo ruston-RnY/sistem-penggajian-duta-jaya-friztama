@@ -5,8 +5,11 @@
 @section('content')
 <div class="content">
     <div class="card">
-        <div class="card-header">
-            <h4 class="box-title">Data Karyawan</h4>
+        <div class="card-header d-flex">
+            <a href="{{ route('employees.create') }}" class="btn btn-primary btn-sm">
+                Tambah
+            </a>
+            <h4 class="box-title ml-auto">Data Karyawan</h4>
         </div>
         <div class="card-body">
             @if (session('status'))
@@ -19,12 +22,10 @@
                     <thead>
                         <th>#</th>
                         <th>Nama</th>
-                        <th>Email</th>
-                        <th>Telpon</th>
-                        <th>Umur</th>
+                        <th>Jabatan</th>
                         <th>Alamat</th>
                         <th>Gaji</th>
-                        <th>Tanggal Masuk</th>
+                        <th>Tanggal Bergabung</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -32,11 +33,9 @@
                             <tr>
                                 <td>{{ $no + $employees->firstItem() }}.</td>
                                 <td>#{{ $employee->nama }}</td>
-                                <td>{{ $employee->email }}</td>
-                                <td>{{ $employee->telpon }}</td>
-                                <td>{{ \Carbon\Carbon::create($employee->tanggal_lahir)->translatedFormat('l, d F Y') }}</td>
+                                <td>{{ $employee->jabatan->nama_jabatan }}</td>
                                 <td>{{ $employee->alamat }}</td>
-                                <td>Rp {{ number_format($employee->gaji) }}</td>
+                                <td>Rp {{ number_format($employee->jabatan->gaji) }}</td>
                                 <td>{{ \Carbon\Carbon::create($employee->tanggal_masuk)->translatedFormat('l, d F Y') }}</td>
                                 <td>
                                     <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>

@@ -12,6 +12,10 @@ class Employee extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'nama', 'email', 'telpon', 'tanggal_lahir', 'alamat', 'gaji', 'tanggal_masuk', 'foto'
+        'nama', 'jabatan_id', 'telpon', 'tanggal_lahir', 'alamat', 'tanggal_masuk', 'foto'
     ];
+
+    public function jabatan(){
+        return $this->belongsTo(Position::class);
+    }
 }

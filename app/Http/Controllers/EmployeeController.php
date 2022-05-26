@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::orderBy('id', 'desc')->paginate(5);
+        $employees = Employee::with('jabatan')->paginate(5);
         return view('pages.employees.index', compact('employees'));
     }
 
@@ -25,7 +26,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('pages.employees.create');
+        $positions = Position::all();
+        return view('pages.employees.create', compact('positions'));
     }
 
     /**
@@ -38,11 +40,10 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'email' => 'required|email',
             'telpon' => 'required',
             'tanggal_lahir' => 'required',
             'alamat' => 'required',
-            'gaji' => 'required',
+            'jabatan_id' => 'required',
             'tanggal_masuk' => 'required',
             'foto' => 'required|file|image|mimes:jpeg,png|max:100'
         ]);
@@ -76,7 +77,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::with('jabatan')->findOrFail($id);
+        $positions = Position::all();
+        return view('pages.employees.edit', compact('employee', 'positions'));
     }
 
     /**
@@ -88,7 +91,30 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'telpon' => 'required',
+            'tanggal_lahir' => 'required',
+            'alamat' => 'required',
+            'jabatan_id' => 'required',
+            'tanggal_masuk' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->has('foto')) {
+            $request->validate([
+                'foto' => 'required|file|image|mimes:jpeg,png|max:100'
+            ]);
+            $data['foto'] = $request->file('foto')->store(
+                'assets/',
+                'public'
+            );
+        }
+        
+        $employee = Employee::findOrFail($id);
+        $employee->update($data);
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -99,6 +125,9 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+
+        return redirect()->route('employees.index');
     }
 }
