@@ -19,14 +19,11 @@
                     </ul>
                 </li>
 
-                <li class="menu-item-has-children dropdown">
+                <li class="menu-item-has-children dropdown {{ Request::is('attendances*') ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-calendar-check-o"></i>Absensi</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li>
-                            <i class="menu-icon fa fa-archive"></i><a href="">Data Master</a>
-                        </li>
-                        <li>
-                            <i class="menu-icon fa fa-plus"></i><a href="">Tambah Paket Travel</a>
+                            <i class="menu-icon fa fa-archive"></i><a href="{{ route('attendances.index') }}">Data Absensi</a>
                         </li>
                     </ul>
                 </li>

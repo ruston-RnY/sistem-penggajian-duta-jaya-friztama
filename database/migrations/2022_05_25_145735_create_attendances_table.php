@@ -20,6 +20,7 @@ class CreateAttendancesTable extends Migration
             $table->integer('jam_kerja');
             $table->integer('jam_lembur');
             $table->string('keterangan');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
