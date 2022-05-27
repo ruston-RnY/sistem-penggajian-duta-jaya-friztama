@@ -1,15 +1,15 @@
 @extends('layouts.main')
 
-@section('title', 'Admin | Absensi')
+@section('title', 'Admin | Pinjaman Karyawan')
  
 @section('content')
 <div class="content">
     <div class="card">
         <div class="card-header d-flex">
-            <a href="{{ route('attendances.create') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('loans.create') }}" class="btn btn-primary btn-sm">
                 Tambah
             </a>
-            <h4 class="box-title ml-auto">Data Absensi</h4>
+            <h4 class="box-title ml-auto">Data Pinjaman Karyawan</h4>
         </div>
         <div class="card-body">
             @if (session('status'))
@@ -22,24 +22,24 @@
                     <thead>
                         <th>#</th>
                         <th>Nama</th>
-                        <th>Tanggal</th>
-                        <th>Jam Kerja</th>
-                        <th>Jam Lembur</th>
+                        <th>Tanggal Pinjaman</th>
+                        <th>Jumlah Pinjaman</th>
+                        <th>Angsuran</th>
                         <th>Keterangan</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
-                        @forelse ($attendances as $no => $attendance)
+                        @forelse ($loans as $no => $loan)
                             <tr>
-                                <td>{{ $no + $attendances->firstItem() }}.</td>
-                                <td>{{ $attendance->karyawan->nama }}</td>
-                                <td>{{ $attendance->tanggal }}</td>
-                                <td>{{ $attendance->jam_kerja }} jam</td>
-                                <td>{{ $attendance->jam_lembur }} jam</td>
-                                <td>{{ $attendance->keterangan }}</td>
+                                <td>{{ $no + $loans->firstItem() }}.</td>
+                                <td>{{ $loan->karyawan->nama }}</td>
+                                <td>{{ \Carbon\Carbon::create($loan->tanggal_pinjaman)->translatedFormat('l, d F Y') }}</td>
+                                <td>Rp {{ number_format($loan->jumlah_pinjaman) }}</td>
+                                <td>Rp {{ number_format($loan->jumlah_angsuran) }} /bulan</td>
+                                <td>{{ $loan->keterangan }}</td>
                                 <td>
-                                    <a href="{{ route('attendances.edit', $attendance->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                    <form action="{{ route('attendances.destroy', $attendance->id) }}" method="POST" class="d-inline">
+                                    <a href="{{ route('loans.edit', $loan->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <form action="{{ route('loans.destroy', $loan->id) }}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('are you sure delete this data?')">
@@ -57,7 +57,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                {{ $attendances->links() }}
+                {{ $loans->links() }}
             </div>
         </div>
     </div>

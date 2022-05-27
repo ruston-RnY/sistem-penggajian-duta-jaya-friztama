@@ -28,26 +28,20 @@
                     </ul>
                 </li>
 
-                <li class="menu-item-has-children dropdown">
+                <li class="menu-item-has-children dropdown {{ Request::is('loans*') ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-credit-card"></i>Pinjaman Karyawan</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li>
-                            <i class="menu-icon fa fa-archive"></i><a href="">Data Master</a>
-                        </li>
-                        <li>
-                            <i class="menu-icon fa fa-plus"></i><a href="">Tambah Paket Travel</a>
+                            <i class="menu-icon fa fa-archive"></i><a href="{{ route('loans.index') }}">Data Pinjaman</a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="menu-item-has-children dropdown">
+                <li class="menu-item-has-children dropdown {{ Request::is('salaries*') ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Penggajian</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li>
-                            <i class="menu-icon fa fa-archive"></i><a href="">Data Master</a>
-                        </li>
-                        <li>
-                            <i class="menu-icon fa fa-plus"></i><a href="">Tambah Paket Travel</a>
+                            <i class="menu-icon fa fa-archive"></i><a href="{{ route('salaries.index') }}">Data Gaji</a>
                         </li>
                     </ul>
                 </li>

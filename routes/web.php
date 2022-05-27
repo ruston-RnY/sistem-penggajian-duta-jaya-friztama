@@ -23,3 +23,5 @@ Route::get('/', [DashboardController::class,'index'])->name('dashboard');
 Route::resource('employees', '\App\Http\Controllers\EmployeeController');
 Route::resource('positions', '\App\Http\Controllers\PositionController');
 Route::resource('attendances', '\App\Http\Controllers\AttendanceController');
+Route::resource('loans', '\App\Http\Controllers\LoanController');
+Route::resource('salaries', '\App\Http\Controllers\SalaryController');
