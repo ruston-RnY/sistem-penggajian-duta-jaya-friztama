@@ -22,7 +22,7 @@
                     <thead>
                         <th>#</th>
                         <th>Nama</th>
-                        <th>Tanggal</th>
+                        <th>Periode</th>
                         <th>Jam Kerja</th>
                         <th>Jam Lembur</th>
                         <th>Keterangan</th>
@@ -33,7 +33,7 @@
                             <tr>
                                 <td>{{ $no + $attendances->firstItem() }}.</td>
                                 <td>{{ $attendance->karyawan->nama }}</td>
-                                <td>{{ $attendance->tanggal }}</td>
+                                <td>{{ \Carbon\Carbon::create($attendance->tanggal)->translatedFormat('F - Y') }}</td>
                                 <td>{{ $attendance->jam_kerja }} jam</td>
                                 <td>{{ $attendance->jam_lembur }} jam</td>
                                 <td>{{ $attendance->keterangan }}</td>

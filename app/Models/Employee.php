@@ -18,4 +18,12 @@ class Employee extends Model
     public function jabatan(){
         return $this->belongsTo(Position::class);
     }
+
+    public function absensi(){
+        return $this->hasOne(Attendance::class, 'karyawan_id', 'id');
+    }
+
+    public function pinjaman(){
+        return $this->hasOne(Loan::class, 'karyawan_id', 'id');
+    }
 }

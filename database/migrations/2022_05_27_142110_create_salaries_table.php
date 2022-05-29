@@ -15,6 +15,13 @@ class CreateSalariesTable extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
+            $table->integer('karyawan_id');
+            $table->integer('absensi_id');
+            $table->integer('pinjaman_id');
+            $table->date('tanggal');
+            $table->integer('bonus');
+            $table->integer('total_gaji');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
