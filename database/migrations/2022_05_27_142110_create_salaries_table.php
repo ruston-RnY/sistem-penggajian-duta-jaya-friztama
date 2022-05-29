@@ -17,7 +17,7 @@ class CreateSalariesTable extends Migration
             $table->id();
             $table->integer('karyawan_id');
             $table->integer('absensi_id');
-            $table->integer('pinjaman_id');
+            $table->integer('pinjaman_id')->nullable();
             $table->date('tanggal');
             $table->integer('bonus');
             $table->integer('upah_lembur');

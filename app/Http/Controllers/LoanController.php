@@ -96,11 +96,15 @@ class LoanController extends Controller
             'jumlah_angsuran' => 'required',
         ]);
 
-        $data = $request->all();
-        $data['total_pinjaman'] = $request->jumlah_pinjaman;
-
         $selectedData = Loan::findOrFail($id);
-        $selectedData->update($data);
+        $selectedData->update([
+            'karyawan_id' => $request->karyawan_id,
+            'tanggal_pinjaman' => $request->tanggal_pinjaman,
+            'jumlah_pinjaman' => $request->jumlah_pinjaman,
+            'jumlah_angsuran' => $request->jumlah_angsuran,
+            'total_pinjaman' => $request->jumlah_pinjaman,
+            'keterangan' => $request->keterangan,
+        ]);
         return redirect()->route('loans.index');
     }
 

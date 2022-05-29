@@ -105,6 +105,8 @@ class SalaryController extends Controller
             'bonus' => 'required'
         ]);
 
+        // dd($request->all());
+
         $data = Salary::create([
             'karyawan_id' => $request->karyawan_id,
             'absensi_id' => $request->absensi_id,
@@ -116,11 +118,13 @@ class SalaryController extends Controller
             'sisa_pinjaman' => $request->jumlah_pinjaman - $request->potongan,
         ]);
 
-        $selectedData = Loan::findOrFail($request->pinjaman_id);
-        $selectedData->update([
-            'karyawan_id' => $request->karyawan_id,
-            'total_pinjaman' => $data->sisa_pinjaman,
-        ]); 
+        if ($request->pinjman_id) {
+            $selectedData = Loan::find($request->pinjaman_id);
+            $selectedData->update([
+                'karyawan_id' => $request->karyawan_id,
+                'total_pinjaman' => $data->sisa_pinjaman,
+            ]); 
+        }
 
         $salaries = Salary::with('karyawan')->paginate(5);
         $employees = Employee::with('absensi', 'jabatan')->get();

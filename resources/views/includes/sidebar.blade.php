@@ -41,7 +41,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Penggajian</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li>
-                            <i class="menu-icon fa fa-archive"></i><a href="{{ route('salaries.index') }}">Data Gaji</a>
+                            <i class="menu-icon fa fa-archive"></i><a href="{{ route('salaries.index') }}">Hitung Gaji</a>
                         </li>
                     </ul>
                 </li>
@@ -52,9 +52,6 @@
                     <li>
                         <i class="menu-icon fa fa-users"></i><a href="">Manage User</a>
                     </li>
-                    <li>
-                        <i class="menu-icon fa fa-plus"></i><a href="">Tambah Paket Travel</a>
-                    </li>
                 </ul>
             </li>
 
@@ -63,9 +60,6 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li>
                             <i class="menu-icon fa fa-archive"></i><a href="">Data Gaji</a>
-                        </li>
-                        <li>
-                            <i class="menu-icon fa fa-plus"></i><a href="">Tambah Paket Travel</a>
                         </li>
                     </ul>
                 </li>

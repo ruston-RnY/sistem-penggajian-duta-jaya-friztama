@@ -4,7 +4,7 @@
  
 @section('content')
     <div class="content">
-        @if(isset($attendance) && isset($attendance->karyawan->pinjaman->jumlah_angsuran))
+        @if(isset($attendance))
             <div class="card">
                 <div class="card-header">
                     <h4 class="box-title">Perhitungan Gaji Karyawan - <span>Periode {{ \Carbon\Carbon::create($attendance->periode)->translatedFormat('F Y') }}</span></h4>
@@ -23,8 +23,10 @@
                         @csrf
                         <input type="hidden" name="karyawan_id" value="{{ $attendance->karyawan->id }}">
                         <input type="hidden" name="absensi_id" value="{{ $attendance->id }}">
-                        <input type="hidden" name="pinjaman_id" value="{{ $attendance->karyawan->pinjaman->id }}">
-                        <input type="hidden" name="jumlah_pinjaman" value="{{ $attendance->karyawan->pinjaman->jumlah_pinjaman }}">
+                        @if (isset($attendance->karyawan->pinjaman->jumlah_angsuran))
+                            <input type="hidden" name="pinjaman_id" value="{{ $attendance->karyawan->pinjaman->id }}">
+                            <input type="hidden" name="jumlah_pinjaman" value="{{ $attendance->karyawan->pinjaman->jumlah_pinjaman }}">
+                        @endif
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Nama</label>
@@ -40,9 +42,15 @@
                             </div>
                         </div>
                         <div class="form-row">
+                            @if (isset($attendance->karyawan->pinjaman->jumlah_angsuran))
+                                <div class="form-group col-md-4">
+                                    <label>Potongan Pinjaman</label>
+                                    <input type="text" class="form-control" name="potongan" value="{{ $attendance->karyawan->pinjaman->jumlah_angsuran ? $attendance->karyawan->pinjaman->jumlah_angsuran : 0 }}" readonly>
+                                </div>
+                            @endif
                             <div class="form-group col-md-4">
-                                <label>Potongan</label>
-                                <input type="text" class="form-control" name="potongan" value="{{ $attendance->karyawan->pinjaman->jumlah_angsuran }}" readonly>
+                                <label>Potongan Pinjaman</label>
+                                <input type="text" class="form-control" name="potongan" value="0" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Total Jam Lembur</label>

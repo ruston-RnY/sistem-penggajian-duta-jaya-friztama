@@ -32,7 +32,7 @@
                         @forelse ($employees as $no => $employee)
                             <tr>
                                 <td>{{ $no + $employees->firstItem() }}.</td>
-                                <td>#{{ $employee->nama }}</td>
+                                <td>{{ $employee->nama }}</td>
                                 <td>{{ $employee->jabatan->nama_jabatan }}</td>
                                 <td>{{ $employee->alamat }}</td>
                                 <td>Rp {{ number_format($employee->jabatan->gaji) }}</td>
