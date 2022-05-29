@@ -4,6 +4,7 @@
  
 @section('content')
     <div class="content">
+        <p>Perhitungan rekap absensi dilakukan tanggal 25 setiap bulannya.</p>
         <div class="card">
             <div class="card-header">
                 <h4 class="box-title">Tambah Data Absensi</h4>
@@ -32,19 +33,19 @@
                         </div>
                         
                         <div class="form-group col-md-6">
-                            <label for="tanggal">Tanggal</label>
+                            <label for="tanggal">Periode</label>
                             <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') }}">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="jam_kerja">Jam Kerja</label>
-                            <input type="number" name="jam_kerja" rows="4" class="form-control" value="{{ old('jam_kerja') }}">
+                            <label for="total_hari_kerja">Total Hari Kerja</label>
+                            <input type="number" name="total_hari_kerja" rows="4" class="form-control" value="{{ old('total_hari_kerja') }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="jam_lembur">Jam Lembur</label>
-                            <input type="number" name="jam_lembur" rows="4" class="form-control" value="{{ old('jam_lembur') }}">
+                            <label for="total_jam_lembur">Total Jam Lembur</label>
+                            <input type="number" name="total_jam_lembur" rows="4" class="form-control" value="{{ old('total_jam_lembur') }}">
                         </div>
                     </div>
 

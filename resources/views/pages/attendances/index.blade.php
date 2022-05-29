@@ -23,8 +23,8 @@
                         <th>#</th>
                         <th>Nama</th>
                         <th>Periode</th>
-                        <th>Jam Kerja</th>
-                        <th>Jam Lembur</th>
+                        <th>Total Kerja</th>
+                        <th>Total Lembur</th>
                         <th>Keterangan</th>
                         <th>Action</th>
                     </thead>
@@ -34,8 +34,8 @@
                                 <td>{{ $no + $attendances->firstItem() }}.</td>
                                 <td>{{ $attendance->karyawan->nama }}</td>
                                 <td>{{ \Carbon\Carbon::create($attendance->tanggal)->translatedFormat('F - Y') }}</td>
-                                <td>{{ $attendance->jam_kerja }} jam</td>
-                                <td>{{ $attendance->jam_lembur }} jam</td>
+                                <td>{{ $attendance->total_hari_kerja }} - hari</td>
+                                <td>{{ $attendance->total_jam_lembur }} - jam</td>
                                 <td>{{ $attendance->keterangan }}</td>
                                 <td>
                                     <a href="{{ route('attendances.edit', $attendance->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>

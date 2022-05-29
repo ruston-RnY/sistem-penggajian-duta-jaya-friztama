@@ -50,24 +50,24 @@ class SalaryController extends Controller
         // $attendance = Attendance::whereMonth('created_at', date('m'))
         // ->whereYear('created_at', date('Y'))
         // ->get(['jam_kerja','created_at']);
-
+        
+        dd($request->all());
+        
+        $attendance = Attendance::where('tanggal', $request->tanggal)->where('karyawan_id', $request->karyawan_id)->with('karyawan.pinjaman')->find($request->karyawan_id);
         // dd($attendance);
-        
-        // $attendance = Attendance::where('tanggal', $request->tanggal)->where('karyawan_id', $request->karyawan_id)->findOrFail($request->karyawan_id);
         $loans = Loan::where('karyawan_id', $request->karyawan_id)->get();
-        $attendances = Attendance::where('karyawan_id', $request->karyawan_id)->with('karyawan.pinjaman')->get();
-        $total_jam_kerja = $attendances->sum('jam_kerja');
-        $total_jam_lembur = $attendances->sum('jam_lembur');
-        $total_pinjaman = $loans->sum('jumlah_pinjaman');
-        $total_angsuran = $loans->sum('jumlah_angsuran');
+        // $attendances = Attendance::where('karyawan_id', $request->karyawan_id)->with('karyawan.pinjaman')->get();
+        // $total_hari_kerja = $attendance->sum('total_hari_kerja');
+        // $total_jam_lembur = $attendance->sum('total_jam_lembur');
+        // $total_pinjaman = $loans->sum('jumlah_pinjaman');
+        // $total_angsuran = $loans->sum('jumlah_angsuran');
         
-        // dd($totalAngsuran);
         return view('pages.salaries.create', [
-            'attendances' => $attendances,
-            'total_jam_kerja' => $total_jam_kerja,
-            'total_jam_lembur' => $total_jam_lembur,
-            'total_pinjaman' => $total_pinjaman,
-            'total_angsuran' => $total_angsuran
+            'attendance' => $attendance,
+            // 'total_hari_kerja' => $total_hari_kerja,
+            // 'total_jam_lembur' => $total_jam_lembur,
+            // 'total_pinjaman' => $total_pinjaman,
+            // 'total_angsuran' => $total_angsuran
         ]);
     }
 

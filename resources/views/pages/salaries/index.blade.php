@@ -24,8 +24,9 @@
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="tanggal">Tanggal</label>
-                                <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') }}">
+                                <label for="tanggal">Pilih Periode Gaji</label>
+                                {{-- <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') }}"> --}}
+                                <input type="month" class="form-control" name="tanggal" min="2018-03" value="{{ old('tanggal') }}">
                             </div>
         
                             <div class="form-group col-md-6">

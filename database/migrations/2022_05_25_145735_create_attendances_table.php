@@ -17,9 +17,9 @@ class CreateAttendancesTable extends Migration
             $table->id();
             $table->integer('karyawan_id');
             $table->date('tanggal');
-            $table->integer('jam_kerja');
-            $table->integer('jam_lembur');
-            $table->string('keterangan');
+            $table->integer('total_hari_kerja');
+            $table->integer('total_jam_lembur');
+            $table->string('keterangan')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -41,8 +41,8 @@ class AttendanceController extends Controller
         $request->validate([
             'karyawan_id' => 'required',
             'tanggal' => 'required',
-            'jam_kerja' => 'required',
-            'jam_lembur' => 'required',
+            'total_hari_kerja' => 'required',
+            'total_jam_lembur' => 'required',
         ]);
 
         $data = $request->all();
@@ -86,8 +86,8 @@ class AttendanceController extends Controller
         $request->validate([
             'karyawan_id' => 'required',
             'tanggal' => 'required',
-            'jam_kerja' => 'required',
-            'jam_lembur' => 'required',
+            'total_hari_kerja' => 'required',
+            'total_jam_lembur' => 'required',
         ]);
 
         $data = $request->all();
