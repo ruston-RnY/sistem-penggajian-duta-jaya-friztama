@@ -16,7 +16,7 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->integer('karyawan_id');
-            $table->date('tanggal');
+            $table->string('periode');
             $table->integer('total_hari_kerja');
             $table->integer('total_jam_lembur');
             $table->string('keterangan')->nullable();

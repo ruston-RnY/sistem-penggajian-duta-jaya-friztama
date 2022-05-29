@@ -33,8 +33,9 @@
                         </div>
                         
                         <div class="form-group col-md-6">
-                            <label for="tanggal">Periode</label>
-                            <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') }}">
+                            <label for="periode">Periode</label>
+                            {{-- <input type="date" class="form-control" name="periode" value="{{ old('periode') }}"> --}}
+                            <input type="month" class="form-control" name="periode" min="2018-03" value="{{ old('periode') }}">
                         </div>
                     </div>
 

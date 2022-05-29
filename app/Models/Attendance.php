@@ -12,7 +12,7 @@ class Attendance extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'karyawan_id', 'tanggal', 'total_hari_kerja', 'total_jam_lembur', 'keterangan'
+        'karyawan_id', 'periode', 'total_hari_kerja', 'total_jam_lembur', 'keterangan'
     ];
 
     public function karyawan(){

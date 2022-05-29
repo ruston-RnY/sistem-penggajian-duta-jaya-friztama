@@ -33,7 +33,7 @@
                             <tr>
                                 <td>{{ $no + $attendances->firstItem() }}.</td>
                                 <td>{{ $attendance->karyawan->nama }}</td>
-                                <td>{{ \Carbon\Carbon::create($attendance->tanggal)->translatedFormat('F - Y') }}</td>
+                                <td>{{ \Carbon\Carbon::create($attendance->periode)->translatedFormat('F - Y') }}</td>
                                 <td>{{ $attendance->total_hari_kerja }} - hari</td>
                                 <td>{{ $attendance->total_jam_lembur }} - jam</td>
                                 <td>{{ $attendance->keterangan }}</td>

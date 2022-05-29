@@ -4,11 +4,10 @@
  
 @section('content')
     <div class="content">
-        @if(isset($attendance))
-            {{-- <p>not null</p> --}}
+        @if(isset($attendance) && isset($attendance->karyawan->pinjaman->jumlah_angsuran))
             <div class="card">
                 <div class="card-header">
-                    <h4 class="box-title">Perhitungan Gaji Karyawan - <span>Periode {{ \Carbon\Carbon::create($attendance->tanggal)->translatedFormat('F Y') }}</span></h4>
+                    <h4 class="box-title">Perhitungan Gaji Karyawan - <span>Periode {{ \Carbon\Carbon::create($attendance->periode)->translatedFormat('F Y') }}</span></h4>
                 </div>
                 <div class="card-body card-block">
                     @if ($errors->any())
