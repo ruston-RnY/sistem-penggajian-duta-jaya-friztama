@@ -25,6 +25,7 @@
                         <th>Tanggal Pinjaman</th>
                         <th>Jumlah Pinjaman</th>
                         <th>Angsuran</th>
+                        <th>Total Pinjaman</th>
                         <th>Keterangan</th>
                         <th>Action</th>
                     </thead>
@@ -36,6 +37,7 @@
                                 <td>{{ \Carbon\Carbon::create($loan->tanggal_pinjaman)->translatedFormat('l, d F Y') }}</td>
                                 <td>Rp {{ number_format($loan->jumlah_pinjaman) }}</td>
                                 <td>Rp {{ number_format($loan->jumlah_angsuran) }} /bulan</td>
+                                <td>Rp {{ number_format($loan->total_pinjaman) }} /bulan</td>
                                 <td>{{ $loan->keterangan }}</td>
                                 <td>
                                     <a href="{{ route('loans.edit', $loan->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>

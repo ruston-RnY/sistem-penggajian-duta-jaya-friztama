@@ -25,8 +25,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="tanggal">Pilih Periode Gaji</label>
-                                {{-- <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') }}"> --}}
-                                <input type="month" class="form-control" name="tanggal" min="2018-03" value="{{ old('tanggal') }}">
+                                <input type="month" class="form-control" name="tanggal" min="2020-03">
                             </div>
         
                             <div class="form-group col-md-6">
@@ -52,9 +51,6 @@
 
     <div class="card">
         <div class="card-header">
-            {{-- <a href="{{ route('salaries.create') }}" class="btn btn-primary btn-sm">
-                Tambah
-            </a> --}}
             <h4 class="box-title">Data Gaji</h4>
         </div>
         <div class="card-body">
@@ -78,8 +74,8 @@
                             <tr>
                                 <td>{{ $no + $salaries->firstItem() }}.</td>
                                 <td>{{ \Carbon\Carbon::create($salary->tanggal)->translatedFormat('l, d F Y') }}</td>
-                                <td>#{{ $salary->karyawan->nama }}</td>
-                                <td>tes</td>
+                                <td>{{ $salary->karyawan->nama }}</td>
+                                <td>{{ $salary->karyawan->jabatan->nama_jabatan }}</td>
                                 <td>Rp {{ number_format($salary->total_gaji) }}</td>
                                 <td>
                                     <a href="{{ route('salaries.edit', $salary->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>

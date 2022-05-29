@@ -34,8 +34,7 @@
                         
                         <div class="form-group col-md-6">
                             <label for="periode">Periode</label>
-                            {{-- <input type="date" class="form-control" name="periode" value="{{ old('periode') }}"> --}}
-                            <input type="month" class="form-control" name="periode" min="2018-03" value="{{ old('periode') }}">
+                            <input type="month" class="form-control" name="periode" min="2020-03">
                         </div>
                     </div>
 

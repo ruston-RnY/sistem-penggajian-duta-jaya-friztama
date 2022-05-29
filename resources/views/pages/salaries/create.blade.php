@@ -19,34 +19,38 @@
                         </ul>
                     </div>
                     @endif
-                    <form action="{{ route('salaries.store') }}" method="POST">
+                    <form action="{{ route('save-salary') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="karyawan_id" value="{{ $attendance->karyawan->id }}">
+                        <input type="hidden" name="absensi_id" value="{{ $attendance->id }}">
+                        <input type="hidden" name="pinjaman_id" value="{{ $attendance->karyawan->pinjaman->id }}">
+                        <input type="hidden" name="jumlah_pinjaman" value="{{ $attendance->karyawan->pinjaman->jumlah_pinjaman }}">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ $attendance->karyawan->nama }}" readonly>
+                                <input type="text" class="form-control" name="nama" value="{{ $attendance->karyawan->nama }}" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Jabatan</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ $attendance->karyawan->jabatan->nama_jabatan }}" readonly>
+                                <input type="text" class="form-control" name="jabatan" value="{{ $attendance->karyawan->jabatan->nama_jabatan }}" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Gaji Pokok</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ number_format($attendance->karyawan->jabatan->gaji) }}" readonly>
+                                <input type="text" class="form-control" name="gaji_pokok" value="{{ $attendance->karyawan->jabatan->gaji }}" readonly>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Potongan</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ number_format($attendance->karyawan->pinjaman->jumlah_angsuran) }}" readonly>
+                                <input type="text" class="form-control" name="potongan" value="{{ $attendance->karyawan->pinjaman->jumlah_angsuran }}" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Total Jam Lembur</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ $attendance->total_jam_lembur }}" readonly>
+                                <input type="text" class="form-control" name="total_jam_lembur" value="{{ $attendance->total_jam_lembur }}" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Total Hari Kerja</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ $attendance->total_hari_kerja }}" readonly>
+                                <input type="text" class="form-control" name="total_hari_kerja" value="{{ $attendance->total_hari_kerja }}" readonly>
                             </div>
                         </div>
                         <div class="form-row">

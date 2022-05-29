@@ -12,7 +12,7 @@ class Loan extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'karyawan_id', 'tanggal_pinjaman', 'jumlah_pinjaman', 'jumlah_angsuran', 'keterangan'
+        'karyawan_id', 'tanggal_pinjaman', 'jumlah_pinjaman', 'jumlah_angsuran', 'total_pinjaman', 'keterangan'
     ];
 
     public function karyawan(){

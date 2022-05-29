@@ -48,7 +48,6 @@ class SalaryController extends Controller
         ]);
         
         $attendance = Attendance::where('periode', $request->tanggal)->where('karyawan_id', $request->karyawan_id)->with('karyawan.pinjaman')->find($request->karyawan_id);
-        
         return view('pages.salaries.create', [
             'attendance' => $attendance,
         ]);
@@ -97,5 +96,34 @@ class SalaryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function saveSalary(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required',
+            'bonus' => 'required'
+        ]);
+
+        $data = Salary::create([
+            'karyawan_id' => $request->karyawan_id,
+            'absensi_id' => $request->absensi_id,
+            'pinjaman_id' => $request->pinjaman_id,
+            'tanggal' => $request->tanggal,
+            'bonus' => $request->bonus,
+            'upah_lembur' => $request->total_jam_lembur * 20000,
+            'total_gaji' => $request->gaji_pokok + $request->bonus + ($request->total_jam_lembur * 20000) - $request->potongan,
+            'sisa_pinjaman' => $request->jumlah_pinjaman - $request->potongan,
+        ]);
+
+        $selectedData = Loan::findOrFail($request->pinjaman_id);
+        $selectedData->update([
+            'karyawan_id' => $request->karyawan_id,
+            'total_pinjaman' => $data->sisa_pinjaman,
+        ]); 
+
+        $salaries = Salary::with('karyawan')->paginate(5);
+        $employees = Employee::with('absensi', 'jabatan')->get();
+        return view('pages.salaries.index', compact('salaries','employees'));
     }
 }

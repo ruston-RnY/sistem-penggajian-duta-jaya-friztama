@@ -12,7 +12,7 @@ class Salary extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'karyawan_id', 'bonus', 'total_gaji'
+        'karyawan_id', 'absensi_id', 'pinjaman_id', 'tanggal', 'bonus', 'upah_lembur', 'total_gaji' , 'sisa_pinjaman'
     ];
 
     public function karyawan(){

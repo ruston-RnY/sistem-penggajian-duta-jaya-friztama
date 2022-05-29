@@ -20,7 +20,9 @@ class CreateSalariesTable extends Migration
             $table->integer('pinjaman_id');
             $table->date('tanggal');
             $table->integer('bonus');
+            $table->integer('upah_lembur');
             $table->integer('total_gaji');
+            $table->integer('sisa_pinjaman');
             $table->softDeletes();
             $table->timestamps();
         });

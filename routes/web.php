@@ -26,4 +26,4 @@ Route::resource('positions', '\App\Http\Controllers\PositionController');
 Route::resource('attendances', '\App\Http\Controllers\AttendanceController');
 Route::resource('loans', '\App\Http\Controllers\LoanController');
 Route::resource('salaries', '\App\Http\Controllers\SalaryController');
-Route::post('salaries/choose-employee', [SalaryController::class], 'chooseEmployee')->name('choose_employee');
+Route::post('salaries/save', [\App\Http\Controllers\SalaryController::class, 'saveSalary'])->name('save-salary');

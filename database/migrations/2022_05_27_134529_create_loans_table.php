@@ -20,6 +20,7 @@ class CreateLoansTable extends Migration
             $table->integer('jumlah_pinjaman');
             $table->integer('jumlah_angsuran');
             $table->string('keterangan');
+            $table->integer('total_pinjaman');
             $table->softDeletes();
             $table->timestamps();
         });
