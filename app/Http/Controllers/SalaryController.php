@@ -53,6 +53,35 @@ class SalaryController extends Controller
         ]);
     }
 
+    public function saveSalary(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required',
+            'bonus' => 'required'
+        ]);
+
+        $data = Salary::create([
+            'karyawan_id' => $request->karyawan_id,
+            'absensi_id' => $request->absensi_id,
+            'pinjaman_id' => $request->pinjaman_id,
+            'tanggal' => $request->tanggal,
+            'bonus' => $request->bonus,
+            'upah_lembur' => $request->total_jam_lembur * 20000,
+            'total_gaji' => $request->gaji_pokok + $request->bonus + ($request->total_jam_lembur * 20000) - $request->potongan,
+            'sisa_pinjaman' => $request->jumlah_pinjaman - $request->potongan,
+        ]);
+
+        if ($request->pinjaman_id) {
+            $selectedLoan = Loan::find($request->pinjaman_id);
+            $selectedLoan->update([
+                'karyawan_id' => $request->karyawan_id,
+                'total_pinjaman' => $data->sisa_pinjaman,
+            ]); 
+        }
+
+        return redirect()->route('salaries.index');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -92,7 +121,6 @@ class SalaryController extends Controller
         ]);
         
         $selectedData = Salary::findOrFail($id);
-        // dd($request->all());
 
         $selectedData->update([
             'karyawan_id' => $request->karyawan_id,
@@ -105,17 +133,7 @@ class SalaryController extends Controller
             'sisa_pinjaman' => $request->jumlah_pinjaman - $request->potongan,
         ]);
 
-        if ($request->pinjaman_id) {
-            $selectedData = Loan::find($request->pinjaman_id);
-            $selectedData->update([
-                'karyawan_id' => $request->karyawan_id,
-                'total_pinjaman' => $selectedData->sisa_pinjaman,
-            ]); 
-        }
-
-        $salaries = Salary::with('karyawan')->paginate(5);
-        $employees = Employee::with('absensi', 'jabatan')->get();
-        return view('pages.salaries.index', compact('salaries','employees'));
+        return redirect()->route('salaries.index');
     }
 
     /**
@@ -126,39 +144,9 @@ class SalaryController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $salary = Salary::findOrFail($id);
+        $salary->delete();
 
-    public function saveSalary(Request $request)
-    {
-        $request->validate([
-            'tanggal' => 'required',
-            'bonus' => 'required'
-        ]);
-
-        // dd($request->all());
-
-        $data = Salary::create([
-            'karyawan_id' => $request->karyawan_id,
-            'absensi_id' => $request->absensi_id,
-            'pinjaman_id' => $request->pinjaman_id,
-            'tanggal' => $request->tanggal,
-            'bonus' => $request->bonus,
-            'upah_lembur' => $request->total_jam_lembur * 20000,
-            'total_gaji' => $request->gaji_pokok + $request->bonus + ($request->total_jam_lembur * 20000) - $request->potongan,
-            'sisa_pinjaman' => $request->jumlah_pinjaman - $request->potongan,
-        ]);
-
-        if ($request->pinjaman_id) {
-            $selectedLoan = Loan::find($request->pinjaman_id);
-            $selectedLoan->update([
-                'karyawan_id' => $request->karyawan_id,
-                'total_pinjaman' => $data->sisa_pinjaman,
-            ]); 
-        }
-
-        $salaries = Salary::with('karyawan')->paginate(5);
-        $employees = Employee::with('absensi', 'jabatan')->get();
-        return view('pages.salaries.index', compact('salaries','employees'));
+        return redirect()->route('salaries.index');
     }
 }
