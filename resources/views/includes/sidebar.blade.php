@@ -46,7 +46,7 @@
                     </ul>
                 </li>
 
-                <li class="menu-item-has-children dropdown">
+                <li class="menu-item-has-children dropdown {{ Request::is('users*') ? 'active' : '' }}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cog" aria-hidden="true"></i>Pengaturan</a>
                 <ul class="sub-menu children dropdown-menu">
                     <li>

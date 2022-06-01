@@ -19,7 +19,6 @@ class SalaryController extends Controller
     {
         $salaries = Salary::with('karyawan')->paginate(5);
         $employees = Employee::with('absensi', 'jabatan')->get();
-        // dd($salaries);
         return view('pages.salaries.index', compact('salaries','employees'));
     }
 
