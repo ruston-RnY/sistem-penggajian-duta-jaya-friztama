@@ -4,10 +4,10 @@
  
 @section('content')
     <div class="content">
-        @if(isset($attendance))
+        @if(isset($salary))
             <div class="card">
                 <div class="card-header">
-                    <h4 class="box-title">Perhitungan Gaji Karyawan - <span>Periode {{ \Carbon\Carbon::create($attendance->periode)->translatedFormat('F Y') }}</span></h4>
+                    <h4 class="box-title">Edit Perhitungan Gaji Karyawan</h4>
                 </div>
                 <div class="card-body card-block">
                     @if ($errors->any())
@@ -19,57 +19,57 @@
                         </ul>
                     </div>
                     @endif
-                    <form action="{{ route('save-salary') }}" method="POST">
+                    <form action="{{ route('salaries.update', $salary->id) }}" method="POST">
+                        @method('PUT')
                         @csrf
-                        <input type="hidden" name="karyawan_id" value="{{ $attendance->karyawan->id }}">
-                        <input type="hidden" name="absensi_id" value="{{ $attendance->id }}">
-                        @if (isset($attendance->karyawan->pinjaman->jumlah_angsuran))
-                            <input type="hidden" name="pinjaman_id" value="{{ $attendance->karyawan->pinjaman->id }}">
-                            <input type="hidden" name="jumlah_pinjaman" value="{{ $attendance->karyawan->pinjaman->jumlah_pinjaman }}">
+                        <input type="hidden" name="karyawan_id" value="{{ $salary->karyawan->id }}">
+                        <input type="hidden" name="absensi_id" value="{{ $salary->id }}">
+                        @if (isset($salary->karyawan->pinjaman->jumlah_angsuran))
+                            <input type="hidden" name="pinjaman_id" value="{{ $salary->karyawan->pinjaman->id }}">
+                            <input type="hidden" name="jumlah_pinjaman" value="{{ $salary->karyawan->pinjaman->jumlah_pinjaman }}">
                         @endif
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="nama" value="{{ $attendance->karyawan->nama }}" readonly>
+                                <input type="text" class="form-control" name="nama" value="{{ $salary->karyawan->nama }}" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Jabatan</label>
-                                <input type="text" class="form-control" name="jabatan" value="{{ $attendance->karyawan->jabatan->nama_jabatan }}" readonly>
+                                <input type="text" class="form-control" name="jabatan" value="{{ $salary->karyawan->jabatan->nama_jabatan }}" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Gaji Pokok</label>
-                                <input type="text" class="form-control" name="gaji_pokok" value="{{ $attendance->karyawan->jabatan->gaji }}" readonly>
+                                <input type="text" class="form-control" name="gaji_pokok" value="{{ $salary->karyawan->jabatan->gaji }}" readonly>
                             </div>
                         </div>
                         <div class="form-row">
-                            @if (isset($attendance->karyawan->pinjaman->jumlah_angsuran))
+                            @if (isset($salary->karyawan->pinjaman->jumlah_angsuran))
                                 <div class="form-group col-md-4">
                                     <label>Potongan Pinjaman</label>
-                                    <input type="text" class="form-control" name="potongan" value="{{ $attendance->karyawan->pinjaman->jumlah_angsuran ? $attendance->karyawan->pinjaman->jumlah_angsuran : 0 }}" readonly>
-                                </div>
-                            @else
-                                <div class="form-group col-md-4">
-                                    <label>Potongan Pinjaman</label>
-                                    <input type="text" class="form-control" name="potongan" value="0" readonly>
+                                    <input type="text" class="form-control" name="potongan" value="{{ $salary->karyawan->pinjaman->jumlah_angsuran ? $salary->karyawan->pinjaman->jumlah_angsuran : 0 }}" readonly>
                                 </div>
                             @endif
                             <div class="form-group col-md-4">
+                                <label>Potongan Pinjaman</label>
+                                <input type="text" class="form-control" name="potongan" value="0" readonly>
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label>Total Jam Lembur</label>
-                                <input type="text" class="form-control" name="total_jam_lembur" value="{{ $attendance->total_jam_lembur }}" readonly>
+                                <input type="text" class="form-control" name="total_jam_lembur" value="{{ $salary->karyawan->absensi->total_jam_lembur }}" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Total Hari Kerja</label>
-                                <input type="text" class="form-control" name="total_hari_kerja" value="{{ $attendance->total_hari_kerja }}" readonly>
+                                <input type="text" class="form-control" name="total_hari_kerja" value="{{ $salary->karyawan->absensi->total_hari_kerja }}" readonly>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="tanggal">Tanggal Penetapan</label>
-                                <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') }}">
+                                <input type="date" class="form-control" name="tanggal" value="{{ $salary->tanggal }}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="bonus">Bonus</label>
-                                <input type="text" class="form-control" name="bonus" value="{{ old('bonus') }}">
+                                <input type="text" class="form-control" name="bonus" value="{{ $salary->bonus }}">
                             </div>
                         </div>
                         <a href="{{ route('salaries.index') }}" class="btn btn-secondary btn-sm">Batal</a>

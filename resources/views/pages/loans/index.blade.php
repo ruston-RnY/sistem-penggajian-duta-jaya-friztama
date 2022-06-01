@@ -25,7 +25,7 @@
                         <th>Tanggal Pinjaman</th>
                         <th>Jumlah Pinjaman</th>
                         <th>Angsuran</th>
-                        <th>Total Pinjaman</th>
+                        <th>Sisa Pinjaman</th>
                         <th>Keterangan</th>
                         <th>Action</th>
                     </thead>

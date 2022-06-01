@@ -25,7 +25,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="tanggal">Pilih Periode Gaji</label>
-                                <input type="month" class="form-control" name="tanggal" min="2020-03">
+                                <input type="month" class="form-control" name="tanggal" min="2020-03" placeholder="Pilih periode">
                             </div>
         
                             <div class="form-group col-md-6">

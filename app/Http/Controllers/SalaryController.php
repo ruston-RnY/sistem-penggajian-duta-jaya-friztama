@@ -72,7 +72,9 @@ class SalaryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $salary = Salary::with('karyawan.absensi', 'karyawan.jabatan')->findOrFail($id);
+        // dd($salary);
+        return view('pages.salaries.edit', compact('salary'));
     }
 
     /**
@@ -84,7 +86,36 @@ class SalaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'tanggal' => 'required',
+            'bonus' => 'required'
+        ]);
+        
+        $selectedData = Salary::findOrFail($id);
+        // dd($request->all());
+
+        $selectedData->update([
+            'karyawan_id' => $request->karyawan_id,
+            'absensi_id' => $request->absensi_id,
+            'pinjaman_id' => $request->pinjaman_id,
+            'tanggal' => $request->tanggal,
+            'bonus' => $request->bonus,
+            'upah_lembur' => $request->total_jam_lembur * 20000,
+            'total_gaji' => $request->gaji_pokok + $request->bonus + ($request->total_jam_lembur * 20000) - $request->potongan,
+            'sisa_pinjaman' => $request->jumlah_pinjaman - $request->potongan,
+        ]);
+
+        if ($request->pinjaman_id) {
+            $selectedData = Loan::find($request->pinjaman_id);
+            $selectedData->update([
+                'karyawan_id' => $request->karyawan_id,
+                'total_pinjaman' => $selectedData->sisa_pinjaman,
+            ]); 
+        }
+
+        $salaries = Salary::with('karyawan')->paginate(5);
+        $employees = Employee::with('absensi', 'jabatan')->get();
+        return view('pages.salaries.index', compact('salaries','employees'));
     }
 
     /**
@@ -118,9 +149,9 @@ class SalaryController extends Controller
             'sisa_pinjaman' => $request->jumlah_pinjaman - $request->potongan,
         ]);
 
-        if ($request->pinjman_id) {
-            $selectedData = Loan::find($request->pinjaman_id);
-            $selectedData->update([
+        if ($request->pinjaman_id) {
+            $selectedLoan = Loan::find($request->pinjaman_id);
+            $selectedLoan->update([
                 'karyawan_id' => $request->karyawan_id,
                 'total_pinjaman' => $data->sisa_pinjaman,
             ]); 
