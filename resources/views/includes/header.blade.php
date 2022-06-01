@@ -2,7 +2,7 @@
     <div class="top-left">
         <div class="navbar-header">
             <a class="navbar-brand" href="">PT. Duta Jaya Friztama</a>
-            <a class="navbar-brand hidden" href=""><img src="{{ url('backend/images/Travel-in.png') }}" alt="Logo"></a>
+            {{-- <a class="navbar-brand hidden" href=""><img src="{{ url('backend/images/Travel-in.png') }}" alt="Logo"></a> --}}
             <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
         </div>
     </div>
@@ -12,13 +12,21 @@
             <h6 class="">Copyright &copy; 2022</h6>
             <div class="user-area dropdown">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h6 class="mr-2">toni</h6>
-                    <img class="user-avatar rounded-circle" src="{{ url('backend/images/admin.jpg') }}" alt="User Avatar">
+                    <h6 class="mr-2">{{ auth()->user()->name }}</h6>
+                    <img class="user-avatar rounded-circle" src="{{ url('backend/images/profile-picture.png') }}" alt="User Avatar">
                 </a>
 
-                <div class="user-menu dropdown-menu">
-                    <a href="" class="nav-link"><i class="fa fa-power -off"></i>Logout</a>
-                </div>
+                @auth
+                    <div class="user-menu dropdown-menu">
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button type="submit" class="btn nav-link w-100 text-left" style="background: transparent">
+                                <i class="fa fa-power-off"></i>Logout
+                            </button>
+                            {{-- <a href="" class="nav-link"><i class="fa fa-power-off"></i>Logout</a> --}}
+                        </form>
+                    </div>
+                @endauth
             </div>
 
         </div>

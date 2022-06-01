@@ -50,7 +50,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cog" aria-hidden="true"></i>Pengaturan</a>
                 <ul class="sub-menu children dropdown-menu">
                     <li>
-                        <i class="menu-icon fa fa-users"></i><a href="">Manage User</a>
+                        <i class="menu-icon fa fa-users"></i><a href="{{ route('users.index') }}">Manage User</a>
                     </li>
                 </ul>
             </li>
@@ -63,9 +63,6 @@
                         </li>
                     </ul>
                 </li>
-
-                
-                
             </ul>
         </div>
     </nav>
