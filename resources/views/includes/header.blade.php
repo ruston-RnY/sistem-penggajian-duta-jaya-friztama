@@ -21,7 +21,7 @@
                         <form action="/logout" method="POST">
                             @csrf
                             <button type="submit" class="btn nav-link w-100 text-left" style="background: transparent">
-                                <i class="fa fa-power-off"></i>Logout
+                                <i class="fa fa-power-off text-danger"></i>Logout
                             </button>
                             {{-- <a href="" class="nav-link"><i class="fa fa-power-off"></i>Logout</a> --}}
                         </form>

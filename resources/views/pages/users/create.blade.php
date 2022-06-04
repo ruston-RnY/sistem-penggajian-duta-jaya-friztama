@@ -37,7 +37,7 @@
                             <select name="role" class="form-control" required>
                                 <option value="">Pilih Role</option>
                                 <option value="ADMIN">Admin</option>
-                                <option value="MANAGER">Manager</option>
+                                <option value="PERSONALIA">Personalia</option>
                                 <option value="DIREKTUR">Direktur</option>
                             </select>
                         </div>

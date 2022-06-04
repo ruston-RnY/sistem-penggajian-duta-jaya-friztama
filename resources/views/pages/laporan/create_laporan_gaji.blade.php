@@ -3,7 +3,8 @@
 @section('title', 'Admin | Cetak Laporan Penjualan')
  
 @section('content')
-    <div class="content">
+<div class="content">
+    @if (auth()->user()->role == 'ADMIN' || auth()->user()->role == 'DIREKTUR')
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -27,5 +28,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    @else
+        <div class="container px-4 d-flex" style="height: 80vh">
+            <div class="m-auto card p-4 text-center">
+                <h4>Opps, sayangnya anda tidak memiliki akses untuk fitur ini!</h4>
+                <p>Hubungi admin untuk mendapatkan akses.</p>
+                <div>
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm text-center">Home</a>
+                </div>
+            </div>
+        </div>
+    @endif
+</div>
 @endsection
