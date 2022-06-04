@@ -89,7 +89,9 @@ class SalaryController extends Controller
      */
     public function show($id)
     {
-        //
+        $salary = Salary::with('karyawan.absensi', 'karyawan.jabatan')->findOrFail($id);
+        // dd($salary);
+        return view('pages.salaries.detail', compact('salary'));
     }
 
     /**
@@ -147,5 +149,11 @@ class SalaryController extends Controller
         $salary->delete();
 
         return redirect()->route('salaries.index');
+    }
+
+    public function cetakSlipGaji($id){
+        $salary = Salary::with('karyawan.absensi', 'karyawan.jabatan')->findOrFail($id);
+        // dd($salary);
+        return view('pages.salaries.print_detail_salary', compact('salary'));
     }
 }

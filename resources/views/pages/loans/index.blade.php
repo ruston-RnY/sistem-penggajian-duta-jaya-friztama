@@ -4,12 +4,12 @@
  
 @section('content')
 <div class="content">
+    <h4 class="box-title mb-4">Data Pinjaman Karyawan</h4>
     <div class="card">
         <div class="card-header d-flex">
             <a href="{{ route('loans.create') }}" class="btn btn-primary btn-sm">
                 Tambah
             </a>
-            <h4 class="box-title ml-auto">Data Pinjaman Karyawan</h4>
         </div>
         <div class="card-body">
             @if (session('status'))

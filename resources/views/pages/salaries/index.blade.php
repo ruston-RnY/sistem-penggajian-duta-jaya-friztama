@@ -79,6 +79,9 @@
                                 <td>Rp {{ number_format($salary->total_gaji) }}</td>
                                 <td>
                                     <a href="{{ route('salaries.edit', $salary->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ route('salaries.show', $salary->id) }}" class="btn btn-info btn-sm">
+                                        <i class="far fa-eye"></i>
+                                    </a>
                                     <form action="{{ route('salaries.destroy', $salary->id) }}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf

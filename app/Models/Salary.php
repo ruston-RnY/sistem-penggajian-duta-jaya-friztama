@@ -18,4 +18,8 @@ class Salary extends Model
     public function karyawan(){
         return $this->belongsTo(Employee::class);
     }
+
+    public function pinjaman(){
+        return $this->belongsTo(Loan::class);
+    }
 }

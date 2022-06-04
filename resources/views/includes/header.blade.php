@@ -12,7 +12,7 @@
             <h6 class="">Copyright &copy; 2022</h6>
             <div class="user-area dropdown">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h6 class="mr-2">{{ auth()->user()->name }}</h6>
+                    <h6 class="mr-2 text-capitalize">{{ auth()->user()->name }} -  <span>{{ auth()->user()->role }}</span></h6>
                     <img class="user-avatar rounded-circle" src="{{ url('backend/images/profile-picture.png') }}" alt="User Avatar">
                 </a>
 

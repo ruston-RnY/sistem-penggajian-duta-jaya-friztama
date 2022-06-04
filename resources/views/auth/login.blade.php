@@ -12,12 +12,15 @@
         }
 
         body {
-            background: #000000a6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
             font-family: 'Montserrat', sans-serif;
+        }
+
+        .login-wrap{
+            background: linear-gradient(rgb(35 48 112 / 70%), rgb(12 12 10 / 70%)), url(../backend/images/building2.jpg) no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
             height: 100vh;
         }
 
@@ -120,51 +123,58 @@
             border-radius: 5px;
             color: #fff;
         }
+
         .btn-log:hover{
             background: #191c6b;
             color: #fff;
+        }
+
+        label{
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
-    <section class="login">
-        <div class="container" id="container">
-            <div class="form-container">
-                <form method="post" action="{{ route('login') }}" class="mt-3">
-                    <h3 class="text-center mb-4">Selamat Datang!</h3>
-                    @csrf
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
-
-                        @error('email')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror                                  
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
-
-                        @error('password')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <button type="submit" class="btn btn-log btn-block mt-4">Submit</button>
-                </form>
-            </div>
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-right">
-                        <div class="mt-auto pb-5">
-                            <h4>Sistem Penggajian</h4>
-                            <span>&copy; PT. Duta Jaya Friztama - 2022</span>
+    <div class="login-wrap">
+        <section class="login m-auto">
+            <div class="container" id="container">
+                <div class="form-container">
+                    <form method="post" action="{{ route('login') }}" class="mt-3">
+                        <h3 class="text-center mb-4">Selamat Datang!</h3>
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
+    
+                            @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror                                  
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+    
+                            @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-log btn-block mt-4">Submit</button>
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-right">
+                            <div class="mt-auto pb-5">
+                                <h4>Sistem Penggajian</h4>
+                                <span>&copy; PT. Duta Jaya Friztama - 2022</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </body>
 
 </html>

@@ -59,7 +59,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Laporan</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li>
-                            <i class="menu-icon fa fa-archive"></i><a href="">Data Gaji</a>
+                            <i class="menu-icon fa fa-archive"></i><a href="{{ route('laporan.create') }}">Data Gaji</a>
                         </li>
                     </ul>
                 </li>

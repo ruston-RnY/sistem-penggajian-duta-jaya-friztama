@@ -33,5 +33,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('loans', '\App\Http\Controllers\LoanController');
     Route::resource('salaries', '\App\Http\Controllers\SalaryController');
     Route::post('salaries/save', [\App\Http\Controllers\SalaryController::class, 'saveSalary'])->name('save-salary');
+    Route::get('salaries/cetak/{id}', [\App\Http\Controllers\SalaryController::class, 'cetakSlipGaji'])->name('cetak-slip-gaji');
     Route::resource('users', '\App\Http\Controllers\UserController');
+    Route::resource('laporan', '\App\Http\Controllers\LaporanController');
 });
