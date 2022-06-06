@@ -104,4 +104,10 @@ class PositionController extends Controller
 
         return redirect()->route('positions.index');
     }
+
+    public function search(Request $request)
+    {
+        $positions = Position::where('nama_jabatan', $request->search)->orWhere('nama_jabatan', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        return view('pages.positions.index', compact('positions'));
+    }
 }

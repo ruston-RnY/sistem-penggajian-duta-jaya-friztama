@@ -108,4 +108,10 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
     }
+
+    public function search(Request $request)
+    {
+        $users = User::where('name', $request->search)->orWhere('name', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        return view('pages.users.index', compact('users'));
+    }
 }

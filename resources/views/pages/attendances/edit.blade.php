@@ -30,19 +30,19 @@
                         </div>
                         
                         <div class="form-group col-md-6">
-                            <label for="tanggal">Tanggal</label>
-                            <input type="date" class="form-control" name="tanggal" value="{{ $attendance->tanggal }}">
+                            <label for="periode">Periode</label>
+                            <input type="month" class="form-control" name="periode" min="2020-03" value="{{ $attendance->periode }}">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="jam_kerja">Jam Kerja</label>
-                            <input type="number" name="jam_kerja" rows="4" class="form-control" value="{{ $attendance->jam_kerja }}">
+                            <label for="jam_kerja">Total Hari Kerja</label>
+                            <input type="number" name="total_hari_kerja" rows="4" class="form-control" value="{{ $attendance->total_hari_kerja }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="jam_lembur">Jam Lembur</label>
-                            <input type="number" name="jam_lembur" rows="4" class="form-control" value="{{ $attendance->jam_lembur }}">
+                            <label for="jam_lembur">Total Jam Lembur</label>
+                            <input type="number" name="total_jam_lembur" rows="4" class="form-control" value="{{ $attendance->total_jam_lembur }}">
                         </div>
                     </div>
 

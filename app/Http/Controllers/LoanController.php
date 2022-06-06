@@ -121,4 +121,10 @@ class LoanController extends Controller
 
         return redirect()->route('loans.index');
     }
+
+    public function search(Request $request)
+    {
+        $loans = Loan::where('tanggal_pinjaman', $request->search)->orWhere('tanggal_pinjaman', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        return view('pages.loans.index', compact('loans'));
+    }
 }

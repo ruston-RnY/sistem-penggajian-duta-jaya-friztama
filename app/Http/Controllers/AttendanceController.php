@@ -85,7 +85,7 @@ class AttendanceController extends Controller
     {
         $request->validate([
             'karyawan_id' => 'required',
-            'tanggal' => 'required',
+            'periode' => 'required',
             'total_hari_kerja' => 'required',
             'total_jam_lembur' => 'required',
         ]);
@@ -109,5 +109,11 @@ class AttendanceController extends Controller
         $attendance->delete();
 
         return redirect()->route('attendances.index');
+    }
+
+    public function search(Request $request)
+    {
+        $attendances = Attendance::where('periode', $request->search)->orWhere('periode', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        return view('pages.attendances.index', compact('attendances'));
     }
 }

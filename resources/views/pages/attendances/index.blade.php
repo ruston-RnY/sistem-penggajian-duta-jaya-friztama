@@ -7,10 +7,16 @@
     @if (auth()->user()->role == 'ADMIN')
         <h4 class="box-title mb-4">Data Absensi</h4>
         <div class="card">
-            <div class="card-header d-flex">
+            <div class="card-header d-flex align-items-center">
                 <a href="{{ route('attendances.create') }}" class="btn btn-primary btn-sm">
                     Tambah
                 </a>
+                <form action="{{ route('search-attendance') }}" method="GET" class="form-inline ml-auto">
+                    @csrf
+                    <label for="periode" class="mr-2">Cari Periode</label>
+                    <input type="month" class="form-control mr-2" name="search" min="2020-03">
+                    <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             <div class="card-body">
                 @if (session('status'))

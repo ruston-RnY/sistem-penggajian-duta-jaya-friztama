@@ -7,10 +7,15 @@
     @if (auth()->user()->role == 'ADMIN' || auth()->user()->role == 'PERSONALIA')
         <h4 class="box-title mb-4">Data Karyawan</h4>
         <div class="card">
-            <div class="card-header d-flex">
+            <div class="card-header d-flex align-items-center">
                 <a href="{{ route('employees.create') }}" class="btn btn-primary btn-sm">
                     Tambah
                 </a>
+                <form action="{{ route('search-employee') }}" method="GET" class="form-inline ml-auto">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" placeholder="Cari karyawan..." aria-label="Search" name="search" size="12">
+                    <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             <div class="card-body">
                 @if (session('status'))

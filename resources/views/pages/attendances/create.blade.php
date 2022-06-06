@@ -56,7 +56,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('employees.index') }}" class="btn btn-secondary btn-sm">Batal</a>
+                    <a href="{{ route('attendances.index') }}" class="btn btn-secondary btn-sm">Batal</a>
                     <button type="submit" class="btn btn-primary btn-sm">
                         Submit
                     </button>

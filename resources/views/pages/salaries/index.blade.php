@@ -51,8 +51,17 @@
         </div>
 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex align-items-center">
                 <h4 class="box-title">Data Gaji</h4>
+                @isset ($key)
+                    <h4 class="box-title ml-5 font-italic">'Filter {{ \Carbon\Carbon::create($key)->translatedFormat('l, d F Y') }}'</h4>
+                @endisset
+                <form action="{{ route('search-salary') }}" method="GET" class="form-inline ml-auto">
+                    @csrf
+                    <label for="periode" class="mr-2">Tanggal Penetapan</label>
+                    <input type="date" class="form-control mr-2" name="search">
+                    <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             <div class="card-body">
                 @if (session('status'))
@@ -64,7 +73,7 @@
                     <table class="table table-bordered ">
                         <thead>
                             <th>#</th>
-                            <th>Tanggal</th>
+                            <th>Tanggal Penetapan</th>
                             <th>Nama</th>
                             <th>Jabatan</th>
                             <th>Gaji Bersih</th>

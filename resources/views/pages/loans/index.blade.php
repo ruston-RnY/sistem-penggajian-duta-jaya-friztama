@@ -7,10 +7,16 @@
     @if (auth()->user()->role == 'ADMIN')
         <h4 class="box-title mb-4">Data Pinjaman Karyawan</h4>
         <div class="card">
-            <div class="card-header d-flex">
+            <div class="card-header d-flex align-items-center">
                 <a href="{{ route('loans.create') }}" class="btn btn-primary btn-sm">
                     Tambah
                 </a>
+                <form action="{{ route('search-loan') }}" method="GET" class="form-inline ml-auto">
+                    @csrf
+                    <label for="periode" class="mr-2">Cari Tanggal</label>
+                    <input type="date" class="form-control mr-2" name="search">
+                    <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             <div class="card-body">
                 @if (session('status'))

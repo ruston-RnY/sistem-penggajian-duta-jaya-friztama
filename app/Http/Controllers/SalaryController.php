@@ -153,7 +153,14 @@ class SalaryController extends Controller
 
     public function cetakSlipGaji($id){
         $salary = Salary::with('karyawan.absensi', 'karyawan.jabatan')->findOrFail($id);
-        // dd($salary);
         return view('pages.salaries.print_detail_salary', compact('salary'));
+    }
+
+    public function search(Request $request)
+    {
+        $key = $request->search;
+        $salaries = Salary::with('karyawan')->where('tanggal', $request->search)->orWhere('tanggal', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        $employees = Employee::with('absensi', 'jabatan')->get();
+        return view('pages.salaries.index', compact('salaries', 'employees', 'key'));
     }
 }

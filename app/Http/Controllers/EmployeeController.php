@@ -130,4 +130,10 @@ class EmployeeController extends Controller
 
         return redirect()->route('employees.index');
     }
+
+    public function search(Request $request)
+    {
+        $employees = Employee::where('nama', $request->search)->orWhere('nama', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        return view('pages.employees.index', compact('employees'));
+    }
 }
