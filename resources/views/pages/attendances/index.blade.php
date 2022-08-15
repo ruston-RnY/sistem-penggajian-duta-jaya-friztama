@@ -4,7 +4,7 @@
  
 @section('content')
 <div class="content">
-    @if (auth()->user()->role == 'ADMIN')
+    @if (auth()->user()->role == 'ADMIN' || auth()->user()->role == 'PERSONALIA')
         <h4 class="box-title mb-4">Data Absensi</h4>
         <div class="card">
             <div class="card-header d-flex align-items-center">

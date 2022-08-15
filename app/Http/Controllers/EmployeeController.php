@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\Employee;
 use App\Models\Position;
 use Illuminate\Http\Request;
@@ -127,6 +128,8 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
         $employee->delete();
+        
+        Attendance::where('karyawan_id', $id)->delete();
 
         return redirect()->route('employees.index');
     }
